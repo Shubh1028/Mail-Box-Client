@@ -18,7 +18,7 @@ const Login = () => {
       
          
 if(enteredEmail && enteredPassword) {
-        fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAdJZauQNFCHPG1PLjvZcjucdQn4HiktL0', {
+        fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCN2Ien_FSPnUrgcBkcpVBd5bhaMiDHsac', {
             method: 'POST',
             body: JSON.stringify({
               email: enteredEmail,
