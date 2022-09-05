@@ -1,0 +1,23 @@
+.container {
+    background-color: #831843;
+    padding: 0.1rem 0;
+}
+
+ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}
+
+.a-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.a-link:hover{
+    border-bottom: 3px solid #ffff;
+}

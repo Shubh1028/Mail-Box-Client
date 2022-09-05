@@ -1,0 +1,48 @@
+
+.container{
+    display: flex;
+    height: 91vh;
+    color: #831843;
+}
+.sidebar{
+    width: 20%;
+    border-right: 2px solid #831843;
+    min-width: 100px;
+    box-sizing: border-box;
+}
+.sidebar div{
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-bottom:2px solid #831843;
+    margin: 1rem 0;
+    cursor: pointer;
+    color: #831843;
+
+}
+.sidebar div:hover{
+background-color: #831843;
+color: #ffff;
+
+}
+.form{
+    width: 70%;
+    padding: 2rem;
+}
+.form label {
+    font-weight: bold;
+    margin-bottom:0.5rem;
+    display:inline-block;
+}
+.form input{
+    width: 100%;
+    border-radius: 10px;
+    padding: 0.5rem;
+    border: 1px solid grey;
+    margin-bottom: 1rem;
+}
+
+button{
+    border-radius: 5px;
+    padding: 0.5rem 2rem;
+}

@@ -1,15 +1,18 @@
 import React, {Fragment} from 'react';
 import {Route, Switch} from 'react-router-dom'
 import './App.css';
-import SignUp from './components/SignUp';
-import Login from './components/Login';
+import SignUp from './components/pages/SignUp';
+import Login from './components/pages/Login';
+import MainNavigation from './components/layout/MainNavigation';
+import Home from './components/pages/Home';
 
 function App() {
   return (
    <Fragment>
+    <MainNavigation/>
     <Switch>
     <Route path='/' exact>
-          <Login/>
+          <Home/>
         </Route>
         <Route path='/signup'>
           <SignUp />
