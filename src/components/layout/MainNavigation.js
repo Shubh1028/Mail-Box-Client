@@ -20,7 +20,7 @@ const MainNavigation = () => {
             <div className="container">
                 <ul className="nav">
                     <li>
-                   {isLoggedin &&  <NavLink className="a-link"  to='/home'>Home</NavLink> }
+                   {isLoggedin &&  <NavLink className="a-link"  to='/'>Home</NavLink> }
                    {!isLoggedin &&   <NavLink className="a-link"  to='/login'>Home</NavLink>}
                     </li>
                    

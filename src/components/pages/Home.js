@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useRef, useMemo } from "react";
+import { NavLink } from "react-router-dom";
 import { getUsername } from "../../helper";
 import styles from "./Home.module.css";
 import JoditEditor from "jodit-react";
@@ -45,9 +46,9 @@ const Home = () => {
     <Fragment>
       <div className={styles.container}>
         <div className={styles.sidebar}>
-          <div>Compose</div>
-          <div>Inbox</div>
-          <div>Sent</div>
+        <NavLink to="/home" className={styles.none} activeClassName={styles.active}> <div>Compose</div></NavLink>
+          <NavLink to="/login" className={styles.none} activeClassName={styles.active}><div>Inbox</div></NavLink>
+         <NavLink to="/signup" className={styles.none} activeClassName={styles.active}> <div>Sent</div></NavLink>
         </div>
 
         <form className={styles.form} onSubmit={formHandler}>

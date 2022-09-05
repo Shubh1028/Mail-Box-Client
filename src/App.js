@@ -11,7 +11,7 @@ function App() {
    <Fragment>
     <MainNavigation/>
     <Switch>
-    <Route path='/' exact>
+    <Route path='/home' exact>
           <Home/>
         </Route>
         <Route path='/signup'>
