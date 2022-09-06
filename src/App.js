@@ -1,10 +1,11 @@
 import React, {Fragment} from 'react';
 import {Route, Switch} from 'react-router-dom'
 import './App.css';
-import SignUp from './components/pages/SignUp';
-import Login from './components/pages/Login';
+import SignUp from './components/auth/SignUp';
+import Login from './components/auth/Login';
 import MainNavigation from './components/layout/MainNavigation';
 import Home from './components/pages/Home';
+import Inbox from './components/pages/Inbox';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
     <Switch>
     <Route path='/home' exact>
           <Home/>
+        </Route>
+        <Route path='/inbox'>
+          <Inbox/>
         </Route>
         <Route path='/signup'>
           <SignUp />

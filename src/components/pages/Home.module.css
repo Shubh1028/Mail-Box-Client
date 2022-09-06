@@ -14,7 +14,6 @@
   font-size: 1.2rem;
   font-weight: bold;
   border-bottom: 2px solid #831843;
-  margin: 1rem 0;
   cursor: pointer;
   color: #831843;
 }
@@ -51,4 +50,9 @@
 button {
   border-radius: 5px;
   padding: 0.5rem 2rem;
+}
+.mailsContainer{
+  width: 100%;
+  /* background-color: #831843; */
+  padding: 0.2rem;
 }

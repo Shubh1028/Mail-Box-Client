@@ -6,13 +6,14 @@ import "./MainNavigation.css";
 
 
 const MainNavigation = () => {
-  
+  const history = useHistory();
 
     let isLoggedin = localStorage.getItem('token')
 
     const logoutHandler = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('email')
+        history.replace('/login')
         window.location.reload()
     } 
     return (

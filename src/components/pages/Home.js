@@ -17,6 +17,11 @@ const Home = () => {
   const formHandler = (e) => {
     e.preventDefault();
 
+    const sentTo= to.current.value;
+    const enteredSubject= subject.current.value;
+    const enteredMessage= editor.current.value;
+
+
 
     const mailDetails = {
         to: to.current.value,
@@ -40,6 +45,23 @@ const Home = () => {
     }).catch((err) => {
         console.error(err.message);
     });
+    const userReceived = getUsername(sentTo);
+    const received_mail = {
+        receiver: sentTo,
+        subject: enteredSubject,
+        message: enteredMessage,
+        sender: user,
+        isOpen: false
+    }
+    fetch(`https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${userReceived}/receiver.json`, {
+        method: "POST",
+        body: JSON.stringify(received_mail)
+    }).then((res) => {
+        if (!res.ok) { throw new Error("Something went wrong!") }
+        else return res.json();
+    }).then((data) => {
+      console.log(data);
+    }).catch((err) => { console.log(err); });
   };
 
   return (
@@ -47,7 +69,7 @@ const Home = () => {
       <div className={styles.container}>
         <div className={styles.sidebar}>
         <NavLink to="/home" className={styles.none} activeClassName={styles.active}> <div>Compose</div></NavLink>
-          <NavLink to="/login" className={styles.none} activeClassName={styles.active}><div>Inbox</div></NavLink>
+          <NavLink to="/inbox" className={styles.none} activeClassName={styles.active}><div>Inbox</div></NavLink>
          <NavLink to="/signup" className={styles.none} activeClassName={styles.active}> <div>Sent</div></NavLink>
         </div>
 
