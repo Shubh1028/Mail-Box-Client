@@ -28,10 +28,10 @@ div.inbox_mail {
 }
 
 span.dot {
-    height: 8px;
-    width: 8px;
+    /* height:2px; */
+    /* width: 2px; */
     background-color: #105570;
-    border-radius: 50%;
+    border-radius: 8px;
 }
 
 span.delete_handler {

@@ -56,3 +56,7 @@ button {
   /* background-color: #831843; */
   padding: 0.2rem;
 }
+.unread{
+  color: crimson !important;
+  font-size: 0.8rem;
+}

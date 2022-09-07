@@ -6,6 +6,7 @@ import Login from './components/auth/Login';
 import MainNavigation from './components/layout/MainNavigation';
 import Home from './components/pages/Home';
 import Inbox from './components/pages/Inbox';
+import MailRead from './components/pages/MailRead';
 
 function App() {
   return (
@@ -15,8 +16,11 @@ function App() {
     <Route path='/home' exact>
           <Home/>
         </Route>
-        <Route path='/inbox'>
+        <Route path='/inbox' exact>
           <Inbox/>
+        </Route>
+        <Route path='/inbox/:id' exact>
+          <MailRead/>
         </Route>
         <Route path='/signup'>
           <SignUp />

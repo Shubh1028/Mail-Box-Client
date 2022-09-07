@@ -1,17 +1,47 @@
 import "./Mail.css";
 import { AiOutlineDelete, AiOutlineStar } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { getUsername } from "../../helper";
+import { useEffect } from "react";
+
 
 const Mail = (props) => {
   const regex = /(<([^>]+)>)/gi;
   const editorMessage = props.mail.message.replace(regex, "");
+  const user = localStorage.getItem("email");
+  const username = getUsername(user);
+
+  const dispatch = useDispatch()
+
+  const openHandler = (key) => {
+    fetch(`https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/receiver/${key}.json`, {
+        method: "PUT",
+        body: JSON.stringify({
+            receiver: props.mail.receiver,
+            subject: props.mail.subject,
+            message: props.mail.message,
+            sender: props.mail.sender,
+            isOpen: true
+        })
+    }).then((res) => {
+        console.log('ok')
+    })
+}
+
+useEffect(() => {
+    openHandler(props.mail.key)
+},[])
+
+
   return (
         <div className="inbox_mail">
-                
+                <div>
                 <span><AiOutlineStar /></span>
-                {/* {!props.mail.isOpen && props.isSentBox === false && <span className="dot"></span>} */}
-                {props.isSentBox === false && <NavLink state={props.mail} to={`/inbox/${props.mail.key}`}>
-                    <p>{props.mail.subject}</p>
+               {!props.mail.isOpen && <span className="dot">&nbsp;</span>}
+                </div>
+                {props.isSentBox === false && <NavLink state={props.mail} to={`/inbox/${props.mail.key}`} onClick={openHandler.bind(null, props.mail.key)}>
+               <p>{props.mail.subject}</p>
                 </NavLink>}
                 {props.isSentBox === true && <NavLink state={props.mail} to={`/sent/${props.mail.key}`}>
                     <p>{props.mail.subject}</p>
