@@ -33,6 +33,12 @@ useEffect(() => {
     openHandler(props.mail.key)
 },[])
 
+const deleteHandler = (key) => {
+   
+
+    props.deleteItem(key)
+}
+
 
   return (
         <div className="inbox_mail">
@@ -46,7 +52,7 @@ useEffect(() => {
                 {props.isSentBox === true && <NavLink state={props.mail} to={`/sent/${props.mail.key}`}>
                     <p>{props.mail.subject}</p>
                 </NavLink>}
-                <span className="delete_handler"><AiOutlineDelete /></span>
+                <span className="delete_handler" onClick={deleteHandler.bind(null, props.mail.key)}><AiOutlineDelete /></span>
             </div>
   );
 };

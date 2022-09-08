@@ -37,6 +37,18 @@ const Inbox = () => {
       });
   }, [dispatch]);
 
+  const deleteHandler = (key) => {
+     fetch(`https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/receiver/${key}.json`, {
+        method: "DELETE",
+    }).then((res) => {
+        const index = inboxMail.findIndex((item) => item.key === key);
+        inboxMail.splice(index, 1)
+        setInboxMail(inboxMail);
+        window.location.reload();
+        // setInboxMail(arr);
+    })
+  }
+
   const notOpened = useSelector((state) => state.mail.totalNotOpened);
 
   return (
@@ -72,7 +84,7 @@ const Inbox = () => {
 
         <div className={styles.mailsContainer}>
           {inboxMail.map((mail) => {
-            return <Mail key={mail.key} mail={mail} isSentBox={false} />;
+            return <Mail key={mail.key} mail={mail} deleteItem={deleteHandler} isSentBox={false} />;
           })}
         </div>
       </div>
