@@ -16,17 +16,19 @@ const Home = () => {
 
   const formHandler = (e) => {
     e.preventDefault();
+    const regex = /(<([^>]+)>)/gi;
+    const editorMessage = editor.current.value.replace(regex, "");
 
     const sentTo= to.current.value;
     const enteredSubject= subject.current.value;
-    const enteredMessage= editor.current.value;
+    const enteredMessage= editorMessage;
 
 
 
     const mailDetails = {
         to: to.current.value,
         subject: subject.current.value,
-        message: editor.current.value
+        message: editorMessage
     }
     fetch(`https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/sent.json`, {
         method: "POST",

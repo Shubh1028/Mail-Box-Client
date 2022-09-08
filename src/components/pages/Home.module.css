@@ -1,6 +1,7 @@
 .container {
   display: flex;
-  height: 91vh;
+  height: 75vh;
+
   color: #831843;
 }
 .sidebar {
@@ -18,11 +19,11 @@
   color: #831843;
 }
 .sidebar div:hover {
-  background-color: #831843;
-  color: #ffff;
+  background-color: #fbcfe8;
 }
 .active {
-  border-left: 5px solid #831843;
+  box-sizing: border-box;
+  border-left: 10px solid #831843;
   color: #ffff !important;
   display: block;
 
@@ -53,10 +54,12 @@ button {
 }
 .mailsContainer{
   width: 100%;
-  /* background-color: #831843; */
   padding: 0.2rem;
 }
 .unread{
   color: crimson !important;
   font-size: 0.8rem;
+}
+.bold{
+  font-weight: bolder;
 }

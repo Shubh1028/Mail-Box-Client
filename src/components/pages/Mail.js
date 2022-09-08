@@ -31,9 +31,9 @@ const Mail = (props) => {
 }
 }
 
-useEffect(() => {
-    openHandler(props.mail.key)
-},[])
+// useEffect(() => {
+//     openHandler(props.mail.key)
+// },[])
 
 
 const deleteHandler = (key) => {

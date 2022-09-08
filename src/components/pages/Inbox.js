@@ -8,13 +8,17 @@ import Mail from "./Mail";
 
 const Inbox = () => {
   const dispatch = useDispatch();
-  let mails = [];
   const [inboxMail, setInboxMail] = useState([]);
 
   const user = localStorage.getItem("email");
   const username = getUsername(user);
 
+  
+
   useEffect(() => {
+    const timer = setInterval(() => {
+      let mails = [];  
+    
     fetch(
       `https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/receiver.json`
     )
@@ -35,6 +39,8 @@ const Inbox = () => {
       .catch((err) => {
         console.log(err);
       });
+    }, 2000);
+    return () => clearInterval(timer);
   }, [dispatch]);
 
   const deleteHandler = (key) => {
@@ -45,7 +51,6 @@ const Inbox = () => {
         inboxMail.splice(index, 1)
         setInboxMail(inboxMail);
         window.location.reload();
-        // setInboxMail(arr);
     })
   }
 

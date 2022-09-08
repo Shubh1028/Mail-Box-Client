@@ -72,10 +72,10 @@ const MailRead = (props) =>{
         </div>
 
         <div className={styles.mailsContainer}>
-        {!props.isSent && <p>From: <span>{mail.receiver}</span></p>}
-        {props.isSent && <p>To: <span>{mail.to}</span></p>}
-         <p>Subject: <span>{mail.subject}</span></p>
-         <p>Message: <span>{mail.message}</span></p>
+        {!props.isSent && <p><span className={styles.bold}>From:</span> <span>{mail.receiver}</span></p>}
+        {props.isSent && <p><span className={styles.bold}>To:</span> <span>{mail.to}</span></p>}
+         <p><span className={styles.bold}>Subject:</span> <span>{mail.subject}</span></p>
+         <p><span className={styles.bold}>Message:</span> <span>{mail.message}</span></p>
        
         </div>
       </div>
