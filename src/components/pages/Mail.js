@@ -15,6 +15,7 @@ const Mail = (props) => {
   const dispatch = useDispatch()
 
   const openHandler = (key) => {
+    if(!props.isSentBox) {
     fetch(`https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/receiver/${key}.json`, {
         method: "PUT",
         body: JSON.stringify({
@@ -28,10 +29,12 @@ const Mail = (props) => {
         console.log('ok')
     })
 }
+}
 
 useEffect(() => {
     openHandler(props.mail.key)
 },[])
+
 
 const deleteHandler = (key) => {
    
@@ -44,7 +47,7 @@ const deleteHandler = (key) => {
         <div className="inbox_mail">
                 <div>
                 <span><AiOutlineStar /></span>
-               {!props.mail.isOpen && <span className="dot">&nbsp;</span>}
+               {!props.mail.isOpen && !props.isSentBox && <span className="dot">&nbsp;</span>}
                 </div>
                 {props.isSentBox === false && <NavLink state={props.mail} to={`/inbox/${props.mail.key}`} onClick={openHandler.bind(null, props.mail.key)}>
                <p>{props.mail.subject}</p>

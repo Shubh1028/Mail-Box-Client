@@ -7,6 +7,7 @@ import MainNavigation from './components/layout/MainNavigation';
 import Home from './components/pages/Home';
 import Inbox from './components/pages/Inbox';
 import MailRead from './components/pages/MailRead';
+import Sent from './components/pages/Sent';
 
 function App() {
   return (
@@ -20,7 +21,13 @@ function App() {
           <Inbox/>
         </Route>
         <Route path='/inbox/:id' exact>
-          <MailRead/>
+          <MailRead  isSent={false}/>
+        </Route>
+        <Route path='/sent' exact>
+          <Sent/>
+        </Route>
+        <Route path='/sent/:id' exact>
+          <MailRead  isSent={true}/>
         </Route>
         <Route path='/signup'>
           <SignUp />

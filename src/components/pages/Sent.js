@@ -6,7 +6,7 @@ import { getUsername } from "../../helper";
 import { mailActions } from "../../store/mailSlice";
 import Mail from "./Mail";
 
-const Inbox = () => {
+const Sent = () => {
   const dispatch = useDispatch();
   let mails = [];
   const [inboxMail, setInboxMail] = useState([]);
@@ -16,7 +16,7 @@ const Inbox = () => {
 
   useEffect(() => {
     fetch(
-      `https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/receiver.json`
+      `https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/sent.json`
     )
       .then((res) => {
         return res.json();
@@ -25,31 +25,26 @@ const Inbox = () => {
         let notOpened = 0;
         for (let [key, value] of Object.entries(data)) {
           mails.push({ key, ...value });
-          if (value.isOpen === false) {
-            notOpened += 1;
-          }
+         
         }
         setInboxMail(mails);
-        dispatch(mailActions.countNotOpened(notOpened));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [dispatch]);
+  }, []);
 
   const deleteHandler = (key) => {
-     fetch(`https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/receiver/${key}.json`, {
+     fetch(`https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/sent/${key}.json`, {
         method: "DELETE",
     }).then((res) => {
         const index = inboxMail.findIndex((item) => item.key === key);
         inboxMail.splice(index, 1)
         setInboxMail(inboxMail);
         window.location.reload();
-        // setInboxMail(arr);
     })
   }
 
-  const notOpened = useSelector((state) => state.mail.totalNotOpened);
 
   return (
     <Fragment>
@@ -69,7 +64,7 @@ const Inbox = () => {
             activeClassName={styles.active}
           >
             <div>
-              Inbox <span className={styles.unread}>Unread ({notOpened})</span>
+              Inbox
             </div>
           </NavLink>
           <NavLink
@@ -82,13 +77,13 @@ const Inbox = () => {
           </NavLink>
         </div>
 
-        <div className={styles.mailsContainer}>
+         <div className={styles.mailsContainer}>
           {inboxMail.map((mail) => {
-            return <Mail key={mail.key} mail={mail} deleteItem={deleteHandler} isSentBox={false} />;
+            return <Mail key={mail.key} mail={mail} isSentBox={true} deleteItem={deleteHandler}/>;
           })}
-        </div>
+        </div> 
       </div>
     </Fragment>
   );
 };
-export default Inbox;
+export default Sent;

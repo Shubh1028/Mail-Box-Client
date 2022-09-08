@@ -70,7 +70,7 @@ const Home = () => {
         <div className={styles.sidebar}>
         <NavLink to="/home" className={styles.none} activeClassName={styles.active}> <div>Compose</div></NavLink>
           <NavLink to="/inbox" className={styles.none} activeClassName={styles.active}><div>Inbox</div></NavLink>
-         <NavLink to="/signup" className={styles.none} activeClassName={styles.active}> <div>Sent</div></NavLink>
+         <NavLink to="/sent" className={styles.none} activeClassName={styles.active}> <div>Sent</div></NavLink>
         </div>
 
         <form className={styles.form} onSubmit={formHandler}>

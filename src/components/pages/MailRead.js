@@ -16,6 +16,7 @@ const MailRead = (props) =>{
 
 
     useEffect(() => {
+      if(!props.isSent) {
         fetch(`https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/receiver.json`)
         .then((res) => {return res.json()})
         .then((data) => {
@@ -25,7 +26,18 @@ const MailRead = (props) =>{
             }
            const selectedMail = inboxMails.find((i) => i.key === param.id); 
            dispatch(mailActions.replaceMail(selectedMail));
-        })     
+        }) }else {
+          fetch(`https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/sent.json`)
+          .then((res) => {return res.json()})
+          .then((data) => {
+               let inboxMails = [];
+              for (let [key, value] of Object.entries(data)) {
+                  inboxMails.push({ key, ...value });  
+              }
+             const selectedMail = inboxMails.find((i) => i.key === param.id); 
+             dispatch(mailActions.replaceMail(selectedMail));
+          })
+        }    
     }, [])
   
     return (
@@ -50,7 +62,7 @@ const MailRead = (props) =>{
             </div>
           </NavLink>
           <NavLink
-            to="/signup"
+            to="/sent"
             className={styles.none}
             activeClassName={styles.active}
           >
@@ -60,7 +72,8 @@ const MailRead = (props) =>{
         </div>
 
         <div className={styles.mailsContainer}>
-         <p>Sender: <span>{mail.sender}</span></p>
+        {!props.isSent && <p>From: <span>{mail.receiver}</span></p>}
+        {props.isSent && <p>To: <span>{mail.to}</span></p>}
          <p>Subject: <span>{mail.subject}</span></p>
          <p>Message: <span>{mail.message}</span></p>
        
