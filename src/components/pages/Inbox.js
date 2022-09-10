@@ -47,10 +47,11 @@ const Inbox = () => {
      fetch(`https://mail-box-client-d6ce4-default-rtdb.firebaseio.com/${username}/receiver/${key}.json`, {
         method: "DELETE",
     }).then((res) => {
-        const index = inboxMail.findIndex((item) => item.key === key);
-        inboxMail.splice(index, 1)
-        setInboxMail(inboxMail);
-        window.location.reload();
+      const inboxMailCopy = [...inboxMail]
+        const index = inboxMailCopy.findIndex((item) => item.key === key);
+        inboxMailCopy.splice(index, 1)
+        setInboxMail(inboxMailCopy);
+        // window.location.reload();
     })
   }
 
